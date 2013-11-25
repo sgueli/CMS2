@@ -1,0 +1,50 @@
+﻿@model CMS2.WEB.Models.ViewModels.ContentCreateViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Content for @Model.Content.Page.Title</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Content</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Content.PageId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Content.PageId, Model.SelectItems)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Content.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Content.Title)
+            @Html.ValidationMessageFor(model => model.Content.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Content.Priority)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Content.Priority)
+            @Html.ValidationMessageFor(model => model.Content.Priority)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
